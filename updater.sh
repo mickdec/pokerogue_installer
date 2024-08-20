@@ -40,6 +40,6 @@ cd ../
 
 chmod +x rogueserver/start_rogueserver.sh
 chmod +x pokerogue/start_pokerogue.sh
-./pokerogue_dir/rogueserver/start_rogueserver.sh &
+./rogueserver/start_rogueserver.sh &
 cd pokerogue/
 ./start_pokerogue.sh
