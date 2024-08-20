@@ -15,7 +15,7 @@ echo "Updating.."
 git clone https://github.com/pagefaultgames/pokerogue
 git clone https://github.com/pagefaultgames/rogueserver
 
-cd pokerogue_installer
+cd ../pokerogue_installer
 
 echo "Installing RogueServer.."
 cp RES/common.go ../pokerogue_dir/rogueserver/
