@@ -18,9 +18,9 @@ git clone https://github.com/pagefaultgames/rogueserver
 cd ../pokerogue_installer
 
 echo "Installing RogueServer.."
-cp RES/common.go ../pokerogue_dir/rogueserver/
-cp RES/register.go ../pokerogue_dir/rogueserver/
-sed -i -e 's/winkwink/'$INVITATION_PHRASE'/g' ../pokerogue_dir/rogueserver/common.go
+# cp RES/common.go ../pokerogue_dir/rogueserver/
+# cp RES/register.go ../pokerogue_dir/rogueserver/
+# sed -i -e 's/winkwink/'$INVITATION_PHRASE'/g' ../pokerogue_dir/rogueserver/common.go
 
 cd ../pokerogue_dir/rogueserver
 go build .
@@ -38,5 +38,5 @@ npm install
 cp ../rogueserver/rogueserver .
 
 chmod +x rogueserver
-chmod +x pokerogue/start_pokerogue.sh
+chmod +x start_pokerogue.sh
 ./start_pokerogue.sh
