@@ -27,7 +27,7 @@ import (
 func Register(username, password string) error {
 
 	if !isInvited(invitationString) {
-		return fmt.Errorf("bad invitation string")
+		return fmt.Errorf("invalid invitation")
 	}
 
 	if !isValidUsername(username) {

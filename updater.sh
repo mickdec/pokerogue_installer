@@ -16,27 +16,28 @@ git clone https://github.com/pagefaultgames/pokerogue
 git clone https://github.com/pagefaultgames/rogueserver
 
 echo "Installing RogueServer.."
-cp common.go rogueserver/
-cp register.go rogueserver/
-sed -i -e 's/winkwink/$INVITATION_PHRASE/g' rogueserver/common.go
-chmod +x start_rogueserver.sh
-cp start_pokerogue.sh rogueserver/start_rogueserver.sh
-sed -i -e 's/winkwink/$DB_PASSWORD/g' rogueserver/start_rogueserver.sh
+cp common.go pokerogue_dir/rogueserver/
+cp register.go pokerogue_dir/rogueserver/
+sed -i -e 's/winkwink/'$INVITATION_PHRASE'/g' pokerogue_dir/rogueserver/common.go
+cp start_rogueserver.sh pokerogue_dir/rogueserver/start_rogueserver.sh
+sed -i -e 's/winkwink/'$DB_PASSWORD'/g' pokerogue_dir/rogueserver/start_rogueserver.sh
 
-cd rogueserver
+cd pokerogue_dir/rogueserver
 go build .
-cd ..
+cd ../..
 
 echo "Installing PokeRogue.."
-cp _env_development pokerogue/.env.development
-sed -i -e 's/winkwink/$VITE_SERVER_URL/g' pokerogue/.env.development
-cp package.json pokerogue/package.json
-chmod +x start_pokerogue.sh
-cp start_pokerogue.sh pokerogue/start_pokerogue.sh
+cp _env_development pokerogue_dir/pokerogue/.env.development
+sed -i --expression 's@winkwink@'$VITE_SERVER_URL'@g' pokerogue_dir/pokerogue/.env.development
+cp package.json pokerogue_dir/pokerogue/package.json
+cp start_pokerogue.sh pokerogue_dir/pokerogue/start_pokerogue.sh
 
-cd pokerogue
+cd pokerogue_dir/pokerogue
 npm install
-cd ..
+cd ../..
 
-./pokerogue/start_rogueserver.sh &
-./pokerogue/start_pokerogue.sh &
+chmod +x pokerogue_dir/rogueserver/start_rogueserver.sh
+chmod +x pokerogue_dir/pokerogue/start_pokerogue.sh
+./pokerogue_dir/rogueserver/start_rogueserver.sh &
+cd pokerogue_dir/pokerogue/
+./start_pokerogue.sh
