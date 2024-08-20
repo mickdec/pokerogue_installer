@@ -21,8 +21,6 @@ echo "Installing RogueServer.."
 cp RES/common.go ../pokerogue_dir/rogueserver/
 cp RES/register.go ../pokerogue_dir/rogueserver/
 sed -i -e 's/winkwink/'$INVITATION_PHRASE'/g' ../pokerogue_dir/rogueserver/common.go
-cp RES/start_rogueserver.sh ../pokerogue_dir/rogueserver/start_rogueserver.sh
-sed -i -e 's/winkwink/'$DB_PASSWORD'/g' ../pokerogue_dir/rogueserver/start_rogueserver.sh
 
 cd ../pokerogue_dir/rogueserver
 go build .
@@ -33,13 +31,12 @@ cp RES/_env_development ../pokerogue_dir/pokerogue/.env.development
 sed -i --expression 's@winkwink@'$VITE_SERVER_URL'@g' ../pokerogue_dir/pokerogue/.env.development
 cp RES/package.json ../pokerogue_dir/pokerogue/package.json
 cp RES/start_pokerogue.sh ../pokerogue_dir/pokerogue/start_pokerogue.sh
+sed -i -e 's/winkwink/'$DB_PASSWORD'/g' ../pokerogue_dir/pokerogue/start_pokerogue.sh
 
 cd ../pokerogue_dir/pokerogue
 npm install
-cd ../
+cp ../rogueserver/rogueserver .
 
-chmod +x rogueserver/start_rogueserver.sh
+chmod +x rogueserver
 chmod +x pokerogue/start_pokerogue.sh
-./rogueserver/start_rogueserver.sh &
-cd pokerogue/
 ./start_pokerogue.sh

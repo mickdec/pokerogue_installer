@@ -1,1 +1,0 @@
-./rogueserver/rogueserver --debug --dbuser root --dbpass "winkwink"
